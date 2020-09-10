@@ -1,0 +1,101 @@
+9
+-749 870 187 234 855 100 68 252 798 557 -973 -991 960 -759 -105 -779 956 -606 -206 -28 -508 887 -328 924 460 -448 -553 700 989 -201 -949 -869 -31 676 362 -227 588 339 -765 98 -264 -850 986 535 -808 -283 -997 708 613 -569
+
+
+
+
+
+
+[-749,
+ 3921,
+ -19640, 18600, -1004
+  -1643, 643, -1000 
+   -1348, 887, -500
+    -328, 1384, 1000
+     -1001, 1689, 600
+      -2050, 1038, -1000
+       -90027, 90270, 90000
+        -765, 98, -650
+         -1114, 1521, 400
+          -2088, 1321, -700
+           -569]
+
+
+inter_sum = 0
+max_result = a[0]
+
+while j < len(array) - 1:
+    inter_sum += array[j] + array[j+1]
+
+    if max_result + inter_sum > max_result:
+      max_result = max_result + inter_sum
+
+      if a[j+1] > max_result:
+        max_result = array[j+1]
+        inter_sum = 0
+
+      else:
+        max_result = array[j+1]
+        inter_sum = 0
+
+    else:
+      if array[j+1] > max_result:
+        max_result = array[j+1]
+        inter_sum = 0
+
+    j += 2
+
+
+
+
+
+
+
+
+def maxSum(array):
+  max_result = 0
+
+  for i in range(len(array)):
+    if array[i] > 0:
+      result = array[i]
+    else:
+      continue
+    
+    j = i + 1
+    while j < len(array) - 1:
+      result += array[j] + array[j + 1]
+      j += 2
+      if result > max_result:
+        max_result = result
+
+  if result > max_result:
+    max_result = result
+
+  return max_result
+
+
+def maxSum(array):
+  max_result = 0
+
+  for i in range(len(array)):
+    if array[i] > 0:
+      result = array[i]
+    else:
+      continue
+    
+    for j in range(i + 1, len(array)):
+      if array[j] >= 0:
+        result += array[j]
+        continue
+
+      elif j != len(array) - 1:
+        if array[j] + array[j + 1] >= 0:
+          result += array[j]
+        else:
+          break
+
+    if result > max_result:
+      max_result = result
+
+
+  return max_result

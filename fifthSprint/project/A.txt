@@ -1,0 +1,21 @@
+20
+post https://yandex.com yandex content
+post http://mail.ru mail content
+post https://yandex.com yandex content
+post http://mail.ru mail content
+post https://yandex.com yandex content
+post http://mail.ru mail content
+post https://yandex.com yandex content
+post http://mail.ru mail content
+post https://yandex.com yandex content
+post http://mail.ru mail content
+post http://mail.ru mail content
+post http://mail.ru mail content
+post http://mail.ru mail content
+post http://mail.ru mail content
+post http://mail.ru mail content
+post http://mail.asdf.asdf.ru mail content
+post http://10.ru qwefqwef
+get https://0.com
+get http://9.ru
+get http://a.ru

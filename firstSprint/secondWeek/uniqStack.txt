@@ -1,0 +1,17 @@
+10
+push 1
+pop
+push 2
+size
+push 1
+push 2
+pop
+push 2
+peek
+pop
+pop
+size
+push 10
+size
+pop
+size

@@ -1,0 +1,16 @@
+13
+kondratiy 7 9 5 11220 -1
+kondratiy 6 9 5 120 -1
+kondratiy 5 9 5 20 -1
+sam 1 9 5 0 1
+sam 1 9 5 0 -1
+kondratiy 4 92 5 20 -1
+anna 1 -4 5 0 1
+kondratiy 3 92 5 11220 -1
+sam 1 -4 5 0 1
+anna 3 -4 3 0 1
+anna 2 -4 4 0 1
+kondratiy 2 9 5 1220 -1
+kondratiy 1 9 5 110 -1
+
+
