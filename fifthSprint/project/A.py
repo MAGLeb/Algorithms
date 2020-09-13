@@ -1,3 +1,5 @@
+# 13 сен 2020, 20:45:29 34416742 A Python 3.7.3
+
 import math
 
 BASE = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -7,29 +9,33 @@ B = 62
 def main():
     data_base = {}
 
-    f = open('A.txt', 'r')
+    f = open('20 (2)', 'r')
+    # w = open('output_1.txt', 'w')
     number_strings = int(f.readline())
     line = f.readline().strip()
 
     for _ in range(number_strings):
         method, url, *content = line.split()
         protocol, link = url.split('//')
-        *link, domain = link.split('.')
+        link, domain = link.split('.')
 
         if method.lower() == 'post':
             encoded_url = encoder(len(data_base))
             key = protocol + '//' + str(encoded_url) + '.' + domain
-            data_base[key] = content
+            data_base[decoder(key)] = content
             print(key)
+            # w.writelines(key + '\n')
+
         else:
-            decoded_url = decoder('.'.join(link))
-            key = protocol + '//' + str(decoded_url) + '.' + domain
+            key = decoder(protocol + '//' + str(link) + '.' + domain)
             if key in data_base:
                 print(' '.join(data_base[key]))
+                # w.writelines(' '.join(data_base[key]) + '\n')
             else:
                 print('error')
+                # w.writelines('error\n')
 
-        line = f.readline()
+        line = f.readline().strip()
 
 
 def decoder(string):

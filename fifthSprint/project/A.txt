@@ -14,8 +14,8 @@ post http://mail.ru mail content
 post http://mail.ru mail content
 post http://mail.ru mail content
 post http://mail.ru mail content
-post http://mail.asdf.asdf.ru mail content
-post http://10.ru qwefqwef
-get https://0.com
+post http://mailwer.ru mail content
+post http://bqwerqwer.ru qwefqwef
+get https://a.com
 get http://9.ru
 get http://a.ru

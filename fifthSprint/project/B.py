@@ -1,6 +1,9 @@
+# 13 сен 2020, 22:39:55	34421631 B Python 3.7.3
+
 class Node:
-    def __init__(self, value=None, next_node=None):
+    def __init__(self, value=None, key=None, next_node=None):
         self.value = value
+        self.key = key
         self.next_node = next_node
 
     def __str__(self):
@@ -12,6 +15,7 @@ class Hash:
         self.dictionary = {}
         self.s = 2654435769
         self.p = 1
+        self.simple = 997
 
         while 2 ** (self.p + 1) < max_table_size:
             self.p += 1
@@ -21,52 +25,81 @@ class Hash:
 
     def to_do(self, command):
         method, *values = command.split()
-        key = self.hash_function(int(values[0]))
+        original_key = int(values[0])
+        key = self.hash_function(original_key)
 
         if method == 'put':
             value = values[1]
-            self.put(key, value)
+            self.put(key, value, original_key)
         elif method == 'get':
-            print(self.get(key))
+            print(self.get(key, original_key))
         else:
-            print(self.delete(key))
+            print(self.delete(key, original_key))
 
-    def put(self, key, value):
+    def put(self, key, value, original_key):
+
         if key in self.dictionary:
-            node = self.dictionary[key]
-            new_node = Node(value, node)
-            self.dictionary[key] = new_node
+            head = self.dictionary[key]
+            current_node = self.dictionary[key]
+            while True:
+                if current_node.key == original_key or not current_node.next_node:
+                    break
+                current_node = current_node.next_node
+
+            if current_node.key == original_key:
+                current_node.value = value
+            else:
+                new_node = Node(value, original_key, head)
+                self.dictionary[key] = new_node
         else:
-            self.dictionary[key] = Node(value)
+            self.dictionary[key] = Node(value, original_key)
 
-    def get(self, key):
+    def get(self, key, original_key):
         if key in self.dictionary:
-            return self.dictionary[key]
+            current_node = self.dictionary[key]
+            while True:
+                if not current_node.next_node or current_node.key == original_key:
+                    break
+                current_node = current_node.next_node
+            if current_node.key == original_key:
+                return current_node.value
+            else:
+                return '-1'
         else:
             return '-1'
 
-    def delete(self, key):
+    def delete(self, key, original_key):
         if key in self.dictionary:
-            del self.dictionary[key]
-            return 'ok'
+            current_node = self.dictionary[key]
+            previous_node = None
+
+            while True:
+                if not current_node.next_node or current_node.key == original_key:
+                    break
+                previous_node = current_node
+                current_node = current_node.next_node
+            if current_node.key == original_key:
+                if not previous_node:
+                    if current_node.next_node:
+                        self.dictionary[key] = current_node.next_node
+                    else:
+                        del self.dictionary[key]
+                elif not current_node.next_node:
+                    previous_node.next_node = None
+                else:
+                    previous_node.next_node = current_node.next_node
+
+                return 'ok'
+            else:
+                return 'error'
         else:
             return 'error'
-        # if key in self.dictionary:
-        #     node = self.dictionary[key]
-        #     next_node = node.next_node
-        #     if next_node is None:
-        #         del self.dictionary[key]
-        #     else:
-        #         self.dictionary[key] = next_node
-        #     return 'ok'
-        # else:
-        #     return 'error'
 
 
 def solution():
     f = open('B.txt', 'r')
     number_strings = int(f.readline())
-    hash_table = Hash(1025)
+    hash_table = Hash(1000)
 
     for _ in range(number_strings):
         line = f.readline().strip()
