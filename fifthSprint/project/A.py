@@ -8,9 +8,7 @@ B = 62
 
 def main():
     data_base = {}
-
-    f = open('20 (2)', 'r')
-    # w = open('output_1.txt', 'w')
+    f = open('input.txt', 'r')
     number_strings = int(f.readline())
     line = f.readline().strip()
 
@@ -24,16 +22,13 @@ def main():
             key = protocol + '//' + str(encoded_url) + '.' + domain
             data_base[decoder(key)] = content
             print(key)
-            # w.writelines(key + '\n')
 
         else:
             key = decoder(protocol + '//' + str(link) + '.' + domain)
             if key in data_base:
                 print(' '.join(data_base[key]))
-                # w.writelines(' '.join(data_base[key]) + '\n')
             else:
                 print('error')
-                # w.writelines('error\n')
 
         line = f.readline().strip()
 

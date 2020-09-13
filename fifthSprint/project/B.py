@@ -97,7 +97,7 @@ class Hash:
 
 
 def solution():
-    f = open('B.txt', 'r')
+    f = open('input.txt', 'r')
     number_strings = int(f.readline())
     hash_table = Hash(1000)
 
