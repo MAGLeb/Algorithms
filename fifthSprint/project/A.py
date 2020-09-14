@@ -1,8 +1,8 @@
 # 13 сен 2020, 20:45:29 34416742 A Python 3.7.3
 
-import math
+from string import digits, ascii_letters
 
-BASE = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+BASE = digits + ascii_letters
 B = 62
 
 
@@ -45,12 +45,12 @@ def decoder(string):
 
 def encoder(num):
     r = num % B
-    q = math.floor(num / B)
+    q = num // B
     encoded_string = BASE[r]
 
     while q > 0:
         r = q % B
-        q = math.floor(q / B)
+        q //= B
         encoded_string = BASE[r] + encoded_string
 
     return encoded_string
